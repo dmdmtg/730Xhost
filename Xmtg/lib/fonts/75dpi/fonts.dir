@@ -1,0 +1,131 @@
+130
+courBO10.snf     -adobe-courier-bold-o-normal--10-100-75-75-m-60-iso8859-1
+courBO12.snf     -adobe-courier-bold-o-normal--12-120-75-75-m-70-iso8859-1
+courBO14.snf     -adobe-courier-bold-o-normal--14-140-75-75-m-90-iso8859-1
+courBO18.snf     -adobe-courier-bold-o-normal--18-180-75-75-m-110-iso8859-1
+courBO24.snf     -adobe-courier-bold-o-normal--24-240-75-75-m-150-iso8859-1
+courBO08.snf     -adobe-courier-bold-o-normal--8-80-75-75-m-50-iso8859-1
+courB10.snf      -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso8859-1
+courB12.snf      -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso8859-1
+courB14.snf      -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
+courB18.snf      -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+courB24.snf      -adobe-courier-bold-r-normal--24-240-75-75-m-150-iso8859-1
+courB08.snf      -adobe-courier-bold-r-normal--8-80-75-75-m-50-iso8859-1
+courO10.snf      -adobe-courier-medium-o-normal--10-100-75-75-m-60-iso8859-1
+courO12.snf      -adobe-courier-medium-o-normal--12-120-75-75-m-70-iso8859-1
+courO14.snf      -adobe-courier-medium-o-normal--14-140-75-75-m-90-iso8859-1
+courO18.snf      -adobe-courier-medium-o-normal--18-180-75-75-m-110-iso8859-1
+courO24.snf      -adobe-courier-medium-o-normal--24-240-75-75-m-150-iso8859-1
+courO08.snf      -adobe-courier-medium-o-normal--8-80-75-75-m-50-iso8859-1
+courR10.snf      -adobe-courier-medium-r-normal--10-100-75-75-m-60-iso8859-1
+courR12.snf      -adobe-courier-medium-r-normal--12-120-75-75-m-70-iso8859-1
+courR14.snf      -adobe-courier-medium-r-normal--14-140-75-75-m-90-iso8859-1
+courR18.snf      -adobe-courier-medium-r-normal--18-180-75-75-m-110-iso8859-1
+courR24.snf      -adobe-courier-medium-r-normal--24-240-75-75-m-150-iso8859-1
+courR08.snf      -adobe-courier-medium-r-normal--8-80-75-75-m-50-iso8859-1
+helvBO10.snf     -adobe-helvetica-bold-o-normal--10-100-75-75-p-60-iso8859-1
+helvBO12.snf     -adobe-helvetica-bold-o-normal--12-120-75-75-p-69-iso8859-1
+helvBO14.snf     -adobe-helvetica-bold-o-normal--14-140-75-75-p-82-iso8859-1
+helvBO18.snf     -adobe-helvetica-bold-o-normal--18-180-75-75-p-104-iso8859-1
+helvBO24.snf     -adobe-helvetica-bold-o-normal--24-240-75-75-p-138-iso8859-1
+helvBO08.snf     -adobe-helvetica-bold-o-normal--8-80-75-75-p-50-iso8859-1
+helvB10.snf      -adobe-helvetica-bold-r-normal--10-100-75-75-p-60-iso8859-1
+helvB12.snf      -adobe-helvetica-bold-r-normal--12-120-75-75-p-70-iso8859-1
+helvB14.snf      -adobe-helvetica-bold-r-normal--14-140-75-75-p-82-iso8859-1
+helvB18.snf      -adobe-helvetica-bold-r-normal--18-180-75-75-p-103-iso8859-1
+helvB24.snf      -adobe-helvetica-bold-r-normal--24-240-75-75-p-138-iso8859-1
+helvB08.snf      -adobe-helvetica-bold-r-normal--8-80-75-75-p-50-iso8859-1
+helvO10.snf      -adobe-helvetica-medium-o-normal--10-100-75-75-p-57-iso8859-1
+helvO12.snf      -adobe-helvetica-medium-o-normal--12-120-75-75-p-67-iso8859-1
+helvO14.snf      -adobe-helvetica-medium-o-normal--14-140-75-75-p-78-iso8859-1
+helvO18.snf      -adobe-helvetica-medium-o-normal--18-180-75-75-p-98-iso8859-1
+helvO24.snf      -adobe-helvetica-medium-o-normal--24-240-75-75-p-130-iso8859-1
+helvO08.snf      -adobe-helvetica-medium-o-normal--8-80-75-75-p-47-iso8859-1
+helvR10.snf      -adobe-helvetica-medium-r-normal--10-100-75-75-p-56-iso8859-1
+helvR12.snf      -adobe-helvetica-medium-r-normal--12-120-75-75-p-67-iso8859-1
+helvR14.snf      -adobe-helvetica-medium-r-normal--14-140-75-75-p-77-iso8859-1
+helvR18.snf      -adobe-helvetica-medium-r-normal--18-180-75-75-p-98-iso8859-1
+helvR24.snf      -adobe-helvetica-medium-r-normal--24-240-75-75-p-130-iso8859-1
+helvR08.snf      -adobe-helvetica-medium-r-normal--8-80-75-75-p-46-iso8859-1
+ncenBI10.snf     -adobe-new century schoolbook-bold-i-normal--10-100-75-75-p-66-iso8859-1
+ncenBI12.snf     -adobe-new century schoolbook-bold-i-normal--12-120-75-75-p-76-iso8859-1
+ncenBI14.snf     -adobe-new century schoolbook-bold-i-normal--14-140-75-75-p-88-iso8859-1
+ncenBI18.snf     -adobe-new century schoolbook-bold-i-normal--18-180-75-75-p-111-iso8859-1
+ncenBI24.snf     -adobe-new century schoolbook-bold-i-normal--24-240-75-75-p-148-iso8859-1
+ncenBI08.snf     -adobe-new century schoolbook-bold-i-normal--8-80-75-75-p-56-iso8859-1
+ncenB10.snf      -adobe-new century schoolbook-bold-r-normal--10-100-75-75-p-66-iso8859-1
+ncenB12.snf      -adobe-new century schoolbook-bold-r-normal--12-120-75-75-p-77-iso8859-1
+ncenB14.snf      -adobe-new century schoolbook-bold-r-normal--14-140-75-75-p-87-iso8859-1
+ncenB18.snf      -adobe-new century schoolbook-bold-r-normal--18-180-75-75-p-113-iso8859-1
+ncenB24.snf      -adobe-new century schoolbook-bold-r-normal--24-240-75-75-p-149-iso8859-1
+ncenB08.snf      -adobe-new century schoolbook-bold-r-normal--8-80-75-75-p-56-iso8859-1
+ncenI10.snf      -adobe-new century schoolbook-medium-i-normal--10-100-75-75-p-60-iso8859-1
+ncenI12.snf      -adobe-new century schoolbook-medium-i-normal--12-120-75-75-p-70-iso8859-1
+ncenI14.snf      -adobe-new century schoolbook-medium-i-normal--14-140-75-75-p-81-iso8859-1
+ncenI18.snf      -adobe-new century schoolbook-medium-i-normal--18-180-75-75-p-104-iso8859-1
+ncenI24.snf      -adobe-new century schoolbook-medium-i-normal--24-240-75-75-p-136-iso8859-1
+ncenI08.snf      -adobe-new century schoolbook-medium-i-normal--8-80-75-75-p-50-iso8859-1
+ncenR10.snf      -adobe-new century schoolbook-medium-r-normal--10-100-75-75-p-60-iso8859-1
+ncenR12.snf      -adobe-new century schoolbook-medium-r-normal--12-120-75-75-p-70-iso8859-1
+ncenR14.snf      -adobe-new century schoolbook-medium-r-normal--14-140-75-75-p-82-iso8859-1
+ncenR18.snf      -adobe-new century schoolbook-medium-r-normal--18-180-75-75-p-103-iso8859-1
+ncenR24.snf      -adobe-new century schoolbook-medium-r-normal--24-240-75-75-p-137-iso8859-1
+ncenR08.snf      -adobe-new century schoolbook-medium-r-normal--8-80-75-75-p-50-iso8859-1
+symb10.snf       -adobe-symbol-medium-r-normal--10-100-75-75-p-61-adobe-fontspecific
+symb12.snf       -adobe-symbol-medium-r-normal--12-120-75-75-p-74-adobe-fontspecific
+symb14.snf       -adobe-symbol-medium-r-normal--14-140-75-75-p-85-adobe-fontspecific
+symb18.snf       -adobe-symbol-medium-r-normal--18-180-75-75-p-107-adobe-fontspecific
+symb24.snf       -adobe-symbol-medium-r-normal--24-240-75-75-p-142-adobe-fontspecific
+symb08.snf       -adobe-symbol-medium-r-normal--8-80-75-75-p-51-adobe-fontspecific
+timBI10.snf      -adobe-times-bold-i-normal--10-100-75-75-p-57-iso8859-1
+timBI12.snf      -adobe-times-bold-i-normal--12-120-75-75-p-68-iso8859-1
+timBI14.snf      -adobe-times-bold-i-normal--14-140-75-75-p-77-iso8859-1
+timBI18.snf      -adobe-times-bold-i-normal--18-180-75-75-p-98-iso8859-1
+timBI24.snf      -adobe-times-bold-i-normal--24-240-75-75-p-128-iso8859-1
+timBI08.snf      -adobe-times-bold-i-normal--8-80-75-75-p-47-iso8859-1
+timB10.snf       -adobe-times-bold-r-normal--10-100-75-75-p-57-iso8859-1
+timB12.snf       -adobe-times-bold-r-normal--12-120-75-75-p-67-iso8859-1
+timB14.snf       -adobe-times-bold-r-normal--14-140-75-75-p-77-iso8859-1
+timB18.snf       -adobe-times-bold-r-normal--18-180-75-75-p-99-iso8859-1
+timB24.snf       -adobe-times-bold-r-normal--24-240-75-75-p-132-iso8859-1
+timB08.snf       -adobe-times-bold-r-normal--8-80-75-75-p-47-iso8859-1
+timI10.snf       -adobe-times-medium-i-normal--10-100-75-75-p-52-iso8859-1
+timI12.snf       -adobe-times-medium-i-normal--12-120-75-75-p-63-iso8859-1
+timI14.snf       -adobe-times-medium-i-normal--14-140-75-75-p-73-iso8859-1
+timI18.snf       -adobe-times-medium-i-normal--18-180-75-75-p-94-iso8859-1
+timI24.snf       -adobe-times-medium-i-normal--24-240-75-75-p-125-iso8859-1
+timI08.snf       -adobe-times-medium-i-normal--8-80-75-75-p-42-iso8859-1
+timR10.snf       -adobe-times-medium-r-normal--10-100-75-75-p-54-iso8859-1
+timR12.snf       -adobe-times-medium-r-normal--12-120-75-75-p-64-iso8859-1
+timR14.snf       -adobe-times-medium-r-normal--14-140-75-75-p-74-iso8859-1
+timR18.snf       -adobe-times-medium-r-normal--18-180-75-75-p-94-iso8859-1
+timR24.snf       -adobe-times-medium-r-normal--24-240-75-75-p-124-iso8859-1
+timR08.snf       -adobe-times-medium-r-normal--8-80-75-75-p-44-iso8859-1
+charBI10.snf     -bitstream-charter-bold-i-normal--10-100-75-75-p-62-iso8859-1
+charBI12.snf     -bitstream-charter-bold-i-normal--12-120-75-75-p-74-iso8859-1
+charBI14.snf     -bitstream-charter-bold-i-normal--15-140-75-75-p-93-iso8859-1
+charBI18.snf     -bitstream-charter-bold-i-normal--19-180-75-75-p-117-iso8859-1
+charBI24.snf     -bitstream-charter-bold-i-normal--25-240-75-75-p-154-iso8859-1
+charBI08.snf     -bitstream-charter-bold-i-normal--8-80-75-75-p-50-iso8859-1
+charB10.snf      -bitstream-charter-bold-r-normal--10-100-75-75-p-63-iso8859-1
+charB12.snf      -bitstream-charter-bold-r-normal--12-120-75-75-p-75-iso8859-1
+charB14.snf      -bitstream-charter-bold-r-normal--15-140-75-75-p-94-iso8859-1
+charB18.snf      -bitstream-charter-bold-r-normal--19-180-75-75-p-119-iso8859-1
+charB24.snf      -bitstream-charter-bold-r-normal--25-240-75-75-p-157-iso8859-1
+charB08.snf      -bitstream-charter-bold-r-normal--8-80-75-75-p-50-iso8859-1
+charI10.snf      -bitstream-charter-medium-i-normal--10-100-75-75-p-55-iso8859-1
+charI12.snf      -bitstream-charter-medium-i-normal--12-120-75-75-p-65-iso8859-1
+charI14.snf      -bitstream-charter-medium-i-normal--15-140-75-75-p-82-iso8859-1
+charI18.snf      -bitstream-charter-medium-i-normal--19-180-75-75-p-103-iso8859-1
+charI24.snf      -bitstream-charter-medium-i-normal--25-240-75-75-p-136-iso8859-1
+charI08.snf      -bitstream-charter-medium-i-normal--8-80-75-75-p-44-iso8859-1
+charR10.snf      -bitstream-charter-medium-r-normal--10-100-75-75-p-56-iso8859-1
+charR12.snf      -bitstream-charter-medium-r-normal--12-120-75-75-p-67-iso8859-1
+charR14.snf      -bitstream-charter-medium-r-normal--15-140-75-75-p-84-iso8859-1
+charR18.snf      -bitstream-charter-medium-r-normal--19-180-75-75-p-106-iso8859-1
+charR24.snf      -bitstream-charter-medium-r-normal--25-240-75-75-p-139-iso8859-1
+charR08.snf      -bitstream-charter-medium-r-normal--8-80-75-75-p-45-iso8859-1
+techB14.snf      -dec-terminal-bold-r-normal--14-140-75-75-c-80-dec-dectech
+termB14.snf      -dec-terminal-bold-r-normal--14-140-75-75-c-80-iso8859-1
+tech14.snf       -dec-terminal-medium-r-normal--14-140-75-75-c-80-dec-dectech
+term14.snf       -dec-terminal-medium-r-normal--14-140-75-75-c-80-iso8859-1

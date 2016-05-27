@@ -1,0 +1,19 @@
+These are sun openwindows fonts from $OPENWINHOME/lib/fonts
+converted to .snf format with:
+
+$OPENWINHOME/bin/convertfont
+
+rm Kenji* # to same disk space of this huge file
+
+/usr/local/730X/bin/bdftosnf # this implies .snf file are in 730/386
+			     # format rather than sun format
+
+/usr/local/730X/bin/mkfontdir
+
+magic fonts.alias file from Alan Hastings
+
+# Symbolic link to /usr/local because everything local should
+# be linked there.
+ln -s /home/local/lib/openwinfonts /usr/local/lib/openwinfonts
+
+Steve Crawford 3/15/91

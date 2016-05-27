@@ -1,0 +1,42 @@
+/**/#	Copyright (c) 1989 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident "@(#)a3b2.macros 1.0"
+
+            TOP = TOPDIR
+           ROOT =
+             AS = $(ROOT)/bin/as
+             CC = $(ROOT)/bin/cc
+             LD = $(ROOT)/bin/ld
+             AR = $(ROOT)/bin/ar
+           MAKE = $(ROOT)/bin/make
+
+           LINT = /usr/bin/lint
+            AWK = /usr/bin/awk
+            CPP = /lib/cpp
+    CDEBUGFLAGS = -O
+    SYS_DEFINES = -DSYSV
+    MAKEDEFINES = -DSYSV
+   SYS_INCLUDES = /usr/include
+
+           TAGS = ctags
+        INSTALL = /etc/install
+          STRIP = /bin/strip
+             RM = /bin/rm -f
+             CD = "cd"
+             LS = /bin/ls
+             LN = /bin/ln
+             MV = /bin/mv
+             PR = /bin/pr
+          CHMOD = /bin/chmod
+          CHOWN = /bin/chown
+          CHGRP = /bin/chgrp
+             CP = /bin/cp
+            SED = /bin/sed
+
+/* Defined for server font support */
+#define FontDefines	-DFONT_SNF

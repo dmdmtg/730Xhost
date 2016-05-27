@@ -1,0 +1,16 @@
+/**/#copyright	"%c%"
+/**/#ident	"@(#)r3fontutil:mkfontdir/Imakefile	1.3"
+       INCLUDES = $(STD_INCLUDES) -I../bdftosnf
+           SRCS = mkfontdir.c fontdir.c snf_util.c Lower.c
+           OBJS = mkfontdir.o fontdir.o snf_util.o Lower.o
+   FONT_DEFINES = FontDefines FontFilters
+
+
+#undef InstallManPage
+#define InstallManPage(file,dest)  /* as nothing */
+
+ComplexProgramTarget(mkfontdir)
+
+SpecialObjectRule(mkfontdir.o,$(ICONFIGFILES),$(FONT_DEFINES))
+
+InstallManPageLong(mkfntdir,$(MANDIR),mkfontdir)

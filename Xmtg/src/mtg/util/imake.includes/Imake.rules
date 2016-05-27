@@ -1,0 +1,418 @@
+/*	Copyright (c) 1989 AT&T	*/
+/*	  All Rights Reserved  	*/
+
+/*	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T	*/
+/*	The copyright notice above does not evidence any   	*/
+/*	actual or intended publication of such source code.	*/
+
+/**/#ident "@(#)Imake.rules 1.0"
+/*
+ * This will build an uninstalled program.  This can be used
+ * for multiple programs in the same Makefile.
+ */
+#define	SingleProgramTarget(program,objects,locallibs,syslibs)		@@\
+program: objects locallibs						@@\
+	$(RM) -f $@							@@\
+	$(CC) -o $@ objects locallibs $(LDFLAGS) syslibs		@@\
+									@@\
+relink::								@@\
+	$(RM) -f program						@@\
+	$(MAKE) $(MFLAGS) program					@@\
+									@@\
+clobber::								@@\
+	$(RM) -f program
+
+/*
+ * This target can be called by all programs that are contained in
+ * a single c source file.
+ */
+#define	SimpleProgramTarget(program)					@@\
+           OBJS = program.o						@@\
+           SRCS = program.c						@@\
+									@@\
+ComplexProgramTarget(program)
+
+
+/*
+ * This target is the general interface for building a single program
+ */
+#define	ComplexProgramTarget(program)					@@\
+        PROGRAM = program						@@\
+									@@\
+all:: program								@@\
+									@@\
+program: $(OBJS) $(LOCAL_LIBRARIES)					@@\
+	$(RM) -f $@							@@\
+	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LOCAL_LIBRARIES) $(LDFLAGS)	@@\
+									@@\
+relink:									@@\
+	$(RM) -f $(PROGRAM)						@@\
+	$(MAKE) $(MFLAGS) $(PROGRAM)					@@\
+									@@\
+InstallProgram(program,$(BINDIR))					@@\
+InstallManPage(program,$(MANDIR))					@@\
+DependTarget()								@@\
+									@@\
+clobber::								@@\
+	$(RM) -f $(PROGRAM)
+
+/*
+ * These targets are the general interface for building multiple programs
+ * in a single Makefile.
+ */
+#define	ComplexProgramTarget_1(program,locallib,syslib)			@@\
+									@@\
+        SRCS = $(SRCS1) $(SRCS2) $(SRCS3)				@@\
+        OBJS = $(OBJS1) $(OBJS2) $(OBJS3)				@@\
+									@@\
+all: $(PROGRAMS)							@@\
+									@@\
+program: $(OBJS1) locallib						@@\
+	$(RM) -f $@							@@\
+	$(CC) -o $@ $(OBJS1) locallib $(LDFLAGS) syslib			@@\
+									@@\
+InstallProgram(program,$(BINDIR))					@@\
+InstallManPage(program,$(MANDIR))					@@\
+									@@\
+relink::								@@\
+	$(RM) -f $(PROGRAMS)						@@\
+	$(MAKE) $(MFLAGS) $(PROGRAMS)					@@\
+									@@\
+DependTarget()								@@\
+									@@\
+clobber::								@@\
+	$(RM) -f $(PROGRAMS)
+
+#define	ComplexProgramTarget_2(program,locallib,syslib)			@@\
+program: $(OBJS2) locallib						@@\
+	$(RM) -f $@							@@\
+	$(CC) -o $@ $(OBJS2) locallib $(LDFLAGS) syslib			@@\
+									@@\
+InstallProgram(program,$(BINDIR))					@@\
+InstallManPage(program,$(MANDIR))
+
+#define	ComplexProgramTarget_3(program,locallib,syslib)			@@\
+program: $(OBJS3) locallib						@@\
+	$(RM) -f $@							@@\
+	$(CC) -o $@ $(OBJS3) locallib $(LDFLAGS) syslib			@@\
+									@@\
+InstallProgram(program,$(BINDIR))					@@\
+InstallManPage(program,$(MANDIR))
+
+/*
+ * Install a Library.
+ */
+#define	InstallLibrary(libname,dest)					@@\
+install:: lib/**/libname.a						@@\
+	$(INSTALL) $(INSTLIBFLAGS) -f dest lib/**/libname.a
+
+/*
+ * Install a Library Alias.
+ */
+#define	InstallLibraryAlias(libname,alias,dest)				@@\
+install::								@@\
+	$(RM) -f dest/lib/**/alias.a					@@\
+	$(LN) dest/lib/**/libname.a dest/lib/**/alias.a
+
+/*
+ * Install a Lint Library.
+ */
+#define	InstallLintLibrary(libname,dest)				@@\
+install:: llib-l/**/libname.ln						@@\
+	$(INSTALL) $(INSTLIBFLAGS) -f dest llib-l/**/libname.ln
+
+/*
+ * Install a man page (long form for renaming).
+ */
+#define	InstallManPageLong(file,destdir,dest)				@@\
+install:: file.man							@@\
+	$(INSTALL) -m 0644 -f destdir file.man				@@\
+	$(MV) destdir/file.man destdir/dest.ManSuffix 
+
+/*
+ * Install a man page.
+ */
+#define	InstallManPage(file,dest)					@@\
+install:: file.man							@@\
+	$(INSTALL) -m 0644 -f dest file.man				@@\
+	$(MV) dest/file.man dest/file.ManSuffix
+
+/*
+ * Install a non-executable file.
+ */
+#define	InstallNonExec(file,dest)					@@\
+install:: file								@@\
+	$(INSTALL) -m 0644 -f dest file
+
+/*
+ * Install a program
+ */
+#define	InstallProgram(program,dest)					@@\
+install:: program							@@\
+	$(INSTALL) $(INSTALLFLAGS) -f dest program			@@\
+	$(STRIP) dest/**///**/program
+
+/*
+ * Install a shell script
+ */
+#define	InstallScript(program,dest)					@@\
+install:: program.script						@@\
+	$(INSTALL) $(INSTALLFLAGS) -f dest program.script		@@\
+	$(MV) dest/program.script dest/program
+
+/*
+ * Install multiple programs
+ */
+#define	InstallMultiple(list,dest)					@@\
+install:: list								@@\
+	-mkdir -p dest							@@\
+	@for i in list; do \						@@\
+		(set -x; $(INSTALL) $(INSTALLFLAGS) -f dest $$i); \	@@\
+	done
+
+/*
+ * Enable pseudo symbolic linking from one directory to another
+ * (LinkSubdirs) and from a directory to itself (LinkToSelfAs).
+ */
+#define LinkSubdirs(source,dest)                                        @@\
+install:: source                                                        @@\
+	-mkdir dest                                                     @@\
+	@(here=`pwd`; \                                                 @@\
+	$(CD) dest; \                                                   @@\
+	abstarget=`pwd` ;  \                                            @@\
+	$(CD) $${here}; \                                               @@\
+	$(CD) source; \                                                 @@\
+	abssource=`pwd` ;  \                                            @@\
+        $(CD) $${abssource}; \                                          @@\
+        find . -print | cpio -pmudl $${abstarget}; \                    @@\
+        $(CD) $${here})
+
+#define LinkToSelfAs(alias)                                             @@\
+LinkSubdirs(.,alias)
+
+/*
+ * This makes the depend target given OBJS.
+ */
+#define	DependTarget(option)						@@\
+depend::								@@\
+	@echo "depending files in `pwd` ..." 				@@\
+	@$(DEPEND) $(SRCS) option $(INCLUDES) $(DEFINES) -C$(CC)	@@\
+	@echo "done!"
+
+#define NoDepend()							@@\
+depend::								@@\
+	@echo "depend not required for `pwd`"
+
+#define DependSubdirs(dirs)						@@\
+depend::								@@\
+	@$(MAKE) dirs TARGET=depend
+
+#define InstallSubdirs(dirs)						@@\
+install::								@@\
+	@$(MAKE) dirs TARGET=install
+
+#define CleanSubdirs(dirs)						@@\
+clobber::								@@\
+	$(RM_CMD) \#*							@@\
+	$(MAKE) dirs TARGET=clobber					@@\
+									@@\
+clean::									@@\
+	$(RM_CMD) \#*							@@\
+	$(MAKE) dirs TARGET=clean
+
+#define	CleanTarget()							@@\
+clobber::								@@\
+	$(RM_CMD) \#*							@@\
+									@@\
+clean::									@@\
+	$(RM_CMD) \#*
+
+#define	TagsTarget()							@@\
+tags::									@@\
+	$(TAGS) -w *.[ch]						@@\
+	$(TAGS) -xw *.[ch] > TAGS
+
+#define	MakefileTarget()						@@\
+Makefile:: Imakefile \							@@\
+	$(UTILSRC)/imake.includes/Imake.tmpl \				@@\
+	$(UTILSRC)/imake.includes/Imake.rules \				@@\
+	$(UTILSRC)/imake.includes/$(MACROFILE)				@@\
+		@echo "making Makefile in `pwd` ...\c"			@@\
+		-@$(RM) -f Makefile.bak	 				@@\
+		@$(MV) Makefile Makefile.bak				@@\
+		@$(IMAKE_CMD) -DTOPDIR=$(TOP)				@@\
+		@echo "done!" 
+
+#define MakefileSubdirs(dirs)						@@\
+Makefiles::								@@\
+	@-for i in dirs ;\						@@\
+		do \							@@\
+		save=`pwd` ;\						@@\
+		$(CD) $$i;\						@@\
+		echo "making Makefile in `pwd` ...\c" ;\		@@\
+		$(RM) -f Makefile.bak;\					@@\
+		$(MV) Makefile Makefile.bak;\				@@\
+		case $(TOP) in \				@@\
+		.*) ../$(IMAKE_CMD) -DTOPDIR=$(TOP)/.. ;;\	@@\
+		*) $(IMAKE_CMD) -DTOPDIR=$(TOP) ;;\		@@\
+		esac;\						@@\
+		echo "done!" ;\						@@\
+		$(MAKE) Makefiles;\					@@\
+		$(CD) $$save ;\						@@\
+		done
+/*
+ * These macros are used to build shared libraries.  The normal
+ * sequence for using them is:
+ *
+ * SharedLibraryObjectRule()
+ * SharedLibraryTarget(libname,$(OBJS))
+ * InstallSharedLibrary(libname,$(USRLIBDIR))
+ *
+ * where libname for libxyz_s.a is xyz
+ */
+
+#define SharedLibraryObjectRule()		\
+									@@\
+.c.o:									@@\
+	$(CC) -DSHARELIB $(CFLAGS) -c $<
+
+#define SpecialObjectRule(objs,depends,options)				@@\
+objs:	depends								@@\
+	$(RM) $@							@@\
+	$(CC) -c $(CFLAGS) options $*.c
+
+#define SharedLibraryTarget(libname,objects,import,spec)\
+									@@\
+all:: import.o lib/**/libname/**/_s.a					@@\
+									@@\
+import.o: import.c							@@\
+	$(CC) -c -DSHARELIB $(CFLAGS) import.c 				@@\
+									@@\
+lib/**/libname/**/_s.a: objects						@@\
+	rm -f lib/**/libname/**/_s lib/**/libname/**/_s.a		@@\
+	mkshlib -s spec/**/.sl -t lib/**/libname/**/_s -h lib/**/libname/**/_s.a
+
+#define InstallSharedLibrary(libname,dir)	\
+									@@\
+install::								@@\
+	$(INSTALL) $(INSTSHLIBTARGETFLAGS) -f dir lib/**/libname/**/_s @@\
+	$(INSTALL) $(INSTSHLIBHOSTFLAGS) -f dir lib/**/libname/**/_s.a
+
+/* 
+ * these rules are used to build 'normal' (i.e., archive) libraries
+ */
+
+#define	NormalLibraryAssemblerObjectRule()				@@\
+.s.a:									@@\
+	$(CC) -c $(CFLAGS) $<						@@\
+	$(AR) rv $@ $*.o						@@\
+	$(RM) -f $*.o
+
+#define	NormalLibraryObjectRule()					@@\
+.c.a:									@@\
+	$(CC) -c $(CFLAGS) $<						@@\
+	$(AR) rv $@ $*.o						@@\
+	$(RM) -f $*.o
+
+#define MultipleLibraryTargetStart(libname)				@@\
+all:: lib/**/libname.a							@@\
+									@@\
+PreciousObject(lib/**/libname.a)
+
+#define MultipleLibraryTarget(libname,objlist)				@@\
+									@@\
+lib/**/libname.a:: objlist						@@\
+	@echo lib/**/libname.a is now up-to-date!
+
+#define	LibraryTarget(libname,objlist)					@@\
+all:: lib/**/libname.a							@@\
+									@@\
+PreciousObject(lib/**/libname.a)					@@\
+									@@\
+lib/**/libname.a: objlist						@@\
+	@echo lib/**/libname.a is now up-to-date!
+
+/* these rules are for "efficient" library makes   */
+
+#define	ENormalLibraryObjectRule()					@@\
+.c.a:;
+
+#define EMultipleLibraryTargetStart(libname)				@@\
+all:: lib/**/libname.a
+
+#define EMultipleLibraryTarget(libname,objlist,flags)			@@\
+									@@\
+lib/**/libname.a:: objlist						@@\
+	$(CC) -c flags $(CFLAGS) $(?:.o=.c)				@@\
+	$(AR) rv lib/**/libname.a $?					@@\
+	$(RM) $?
+
+#define	ELibraryTarget(libname,objlist,flags)				@@\
+all:: lib/**/libname.a							@@\
+									@@\
+lib/**/libname.a: objlist						@@\
+	$(CC) -c flags $(CFLAGS) $(?:.o=.c)				@@\
+	$(AR) rv lib/**/libname.a $?					@@\
+	$(RM) $?
+
+#define	AliasedLibraryTarget(libname,alias)				@@\
+all:: lib/**/alias.a							@@\
+									@@\
+lib/**/alias.a: lib/**/libname.a					@@\
+	$(RM) -f $@							@@\
+	$(LN) lib/**/libname.a $@
+
+/*
+ * Note that we force the lint library to always be newer than the
+ * library itself.
+ */
+#define	LintLibraryTarget(libname,srclist)				@@\
+install:: llib-l/**/libname.ln						@@\
+									@@\
+lintlib:: llib-l/**/libname.ln						@@\
+									@@\
+llib-l/**/libname.ln: srclist						@@\
+	$(LINT) $(LINTLIBFLAGS)/**/libname $(LINTFLAGS) srclist
+
+#define NormalLintTarget(srclist)					@@\
+lint:									@@\
+	$(LINT) $(LINTFLAGS) srclist $(LINTLIBS)			@@\
+									@@\
+lint1:									@@\
+	$(LINT) $(LINTFLAGS) $(FILE) $(LINTLIBS)
+
+/*
+ * if you want CDEBUGFLAGS passed along to subdirectories, then
+ * provide a line like this in the appropriate Imakefile
+ * #define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+ */
+#define MakeAndPassToSubdirs(dirs,pass)					@@\
+all:: dirs								@@\
+									@@\
+dirs: FRC								@@\
+	@$(CD) $@; \							@@\
+	echo "making $@ ..." ;\						@@\
+	$(MAKE) $(TARGET) pass						@@\
+									@@\
+FRC:
+
+#define MakeSubdirs(dirs)						@@\
+all:: dirs								@@\
+									@@\
+dirs: FRC								@@\
+	@$(CD) $@; \							@@\
+	echo "making $@ ..." ;\						@@\
+	$(MAKE) $(TARGET)						@@\
+									@@\
+FRC:
+
+#define DefaultNodeAction()						@@\
+.DEFAULT:								@@\
+	$(MAKE) "TARGET=$@"
+
+#define DefaultLeafAction()						@@\
+.DEFAULT:								@@\
+	@echo Unknown target \`$@\'
+
+#define PreciousObject(object)						@@\
+.PRECIOUS:: object

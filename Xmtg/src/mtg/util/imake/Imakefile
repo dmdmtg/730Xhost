@@ -1,0 +1,29 @@
+/**/#	Copyright (c) 1988 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)imake:Imakefile	1.1"
+
+/**/#  Imakefile (Imakefile)
+/**/# 	Acc: 575242781 Thu Mar 24 16:39:41 1988
+/**/# 	Mod: 575242806 Thu Mar 24 16:40:06 1988
+/**/# 	Sta: 575242806 Thu Mar 24 16:40:06 1988
+/**/# 	Owner: 2011
+/**/# 	Group: 1985
+/**/# 	Permissions: 664
+
+
+/**/# 	START USER STAMP AREA
+
+
+/**/# 	END USER STAMP AREA
+
+SRCS = atsign.c
+OBJS = atsign.o
+
+SingleProgramTarget(atsign,$(OBJS),,)
+
+DependTarget()

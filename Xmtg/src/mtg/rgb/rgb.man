@@ -1,0 +1,59 @@
+.TH RGB 1 "14 August 1989" "X Version 11"
+.SH NAME
+rgb - rgb compiler for X11
+.SH SYNOPSIS
+.B "rgb"
+.SH DESCRIPTION
+.PP
+.B rgb
+reads a sorted file containing the
+.I red-green-blue
+values for a color and the color name.  The compiler verifies the values
+of the rgb values and adds the values and the color name to a database file.
+.P
+The format of each entry in the file is as follows.
+.P
+\fIred_value <separator> green_value <separator> blue_value <separator> color_name\fR
+.P
+The values for the individual color components can range from 0 through 255.
+The color name can be up to 41 characters long, excluding the null terminator;
+anything after the 41st
+character is truncated.	 The separator can be any white space character.
+The file is set up so that the color values are separated by a space character
+and the last color value and the color name are separated by 2 or 3 tab
+characters (whichever is needed to align the last column in the file).
+.SH "NAMING CONVENTIONS"
+The naming convention is to use the names
+.I rgb.<display_type>.txt
+for the rgb source file and
+.I rgb.<display_type>.base
+for the compiled rgb file.
+.SH OPTIONS
+Since the server performs a binary search on
+the color name, the database must be sorted according to the color name
+before being compiled.
+.I Sed
+is used to change the multiple tabs into a single space before the file is
+sorted.  The following command is used to
+.I sed,
+sort, and compile the database and direct the output to
+.I rgb.<display_type>.base.
+.P
+.nf
+.ft CW
+/bin/sed "s/[ 	][ 	]*/ /g" < rgb.display_type.txt | sort -f +3 |
+ ../bin/rgb rgb.display_type.base
+.ft R
+.fi
+.P
+The data within each square bracket pair is a single space character followed
+by a single tab character.
+.SH "DIRECTORY SPECIFICATION"
+The directory containing the rgb database must be specified for the server.
+Normally it is
+.I "/usr/Xmtg/lib/rgb.<display_type>".
+The server appends
+.I .base
+to the file name before reading it.
+.SH "SEE ALSO"
+X(1), Xserver(1)

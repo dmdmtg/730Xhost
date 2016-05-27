@@ -1,0 +1,30 @@
+/**/#	Copyright (c) 1989 AT&T
+/**/#	  All Rights Reserved
+
+/**/#	THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+/**/#	The copyright notice above does not evidence any
+/**/#	actual or intended publication of such source code.
+
+/**/#ident	"@(#)mtg:Imakefile	1.0"
+
+/**/#   Modified by:	Karl Larson
+/**/#   Date:		8/1/89
+/**/#   Reasom:		Removed XMTGINITSRC since xmtginit is no longer
+/**/#			a part of our package.
+
+#define IHaveSubdirs
+
+     SUBDIRS = \
+		$(XMTGSRC) \
+		$(XMTGRGBSRC)  \
+		$(UTILSRC) \
+		$(FONTSRC)
+
+MakeSubdirs($(SUBDIRS))
+
+DependSubdirs($(SUBDIRS))
+
+install::
+	-mkdir -m 755 $(BINDIR)
+	-mkdir -m 755 $(XMANDIR)
+	-mkdir -m 755 $(MANDIR)

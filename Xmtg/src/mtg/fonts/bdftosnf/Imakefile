@@ -1,0 +1,30 @@
+/**/#copyright	"%c%"
+/**/#ident	"@(#)r3fontutil:bdftosnf/Imakefile	1.6"
+
+       SRCS = fontutil.c \
+              bdftosnf.c \
+              showsnf.c
+        ALL = bdftosnf showsnf
+   INCLUDES = -I. -I$(INCLUDESRC)
+
+/**/# i386 should be defined no matter what host we are on.
+/**/# This is because the 630 uses 6386-format fonts, so the font compiler
+/**/# and showsnf should always follow the mt.
+
+SYS_DEFINES = -DSYSV -Di386
+all:: $(ALL)
+
+bdftosnf showsnf:	$$@.o fontutil.o $(LOCAL_LIBRARIES)
+	$(RM) $@
+	$(CC) -o $@ $@.o fontutil.o $(CFLAGS) $(LOCAL_LIBRARIES) $(LDFLAGS) $(SYSLAST_LIBRARIES)
+
+InstallMultiple($(ALL),$(BINDIR))
+InstallManPage(bdftosnf,$(MANDIR))
+InstallManPage(showsnf,$(MANDIR))
+
+DependTarget()
+
+NormalLintTarget(fontutil.c bdftosnf.c)
+
+clobber::
+	$(RM) $(ALL)

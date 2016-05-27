@@ -1,0 +1,95 @@
+This is the host package for support of the 730X terminal.  The 730X
+terminal is a 730 terminal with a 730X rom cartridge plugged in the side.
+As of this time, the latest release of the cartridge is version 1.2 dated
+08/07/91.  You also need an ethernet board in the 730 with either TCP/IP or
+ISO roms in it.  The ethernet board has space for extra memory which is
+also needed (2-4 megabytes).
+
+If you are using TCP/IP, the ONLY thing you need from this package is the
+"lib" directory.  This contains the rgb database and the fonts for the
+730.  The fonts are in ".snf" format which has been converted from the
+original ".bdf" source so they are directly readable by the 730X server.
+The programs under the "src" directory were included in the original 730X
+package but in general they are useless to you so you can ignore them.  If
+you are using ISO, the files under src/mtg/Xmtg may be of interest to you.
+
+When using TCP, the 730X reads its files over tftp, so it is recommended to
+install this package under /tftpboot/Xmtg and to administer tftpd to make
+all files under /tftpboot available over tftp.
+
+To configure the 730, first configure the network.  For TCP, this shows up
+under the button 3 More menu, item Netadmin.  Hit the Configuration
+button.  Find out an internet address for your terminal, your primary
+gateway, and your primary and secondary domain name servers.  If your TCP
+network is configured normally, you probably have 8 bit subnets.  In that
+case, the Broadcast Address will be the top three numbers of your
+terminal's IP address with "255" as the fourth number.  Also, with 8 bit
+subnets your Subnet Mask will be "ff.ff.ff.00".  To change a field, click
+on it with button 1, type in your value, and hit return.  The values don't
+take effect until you reboot the terminal (control-shift-reset will do that
+or power cycle).
+
+The 730's TCP card supports two protocols for name servers; "Domain Name
+Server" and "IEN-116 Name Server".  IEN-116 is an older protocol, but I
+have found that if your name server supports it, you're better off using
+that than the "Domain Name Server" protocol because the 730 has a bug when
+using the Domain Name Server protocol: it can't handle queries that need to
+be forwarded to another server.  So, first try putting the IP addresses for
+your primary and secondary servers in the IEN-116 Name Server entries and
+put 0.0.0.0 in the Domain Name Server entries.  If that doesn't work, try
+putting the addresses in the Domain Name Server Entries instead.  If you
+can't get name servers to work, you can type in IP addresses in Telnet
+windows.
+
+The Default Domain Suffix (e.g. ih.att.com) is what's added to the name
+lookup when you enter in a name in a Telnet window without a domain.  The
+Default Telnet Host is the default name used when you hit return in a
+Telnet window.  Choose the maximum values for the bottom four parameters:
+118 Maximum TCP Endpoints, 8 Maximum UDP Endpoints, heavy Expected STREAMS
+Load, and 4096 TCP Window Size.
+
+Now configure the X portion through the button 3 More Xadmin item.  Click
+on X server options.  Enter in the IP addresses of one or two hosts which
+contain this package installed under tftp in "Xmtg".  The Default Font Path
+should look like this:
+	Xmtg/lib/fonts/100dpi,Xmtg/lib/fonts/75dpi,Xmtg/lib/fonts/Xol,Xmtg/lib/fonts/misc,Xmtg/lib/fonts/openwinfonts,Xmtg/lib/fonts/sun
+
+set the Cursor Font to
+	cursor
+set the Text Font to
+	rom11x16
+set the Color Database Path to
+	Xmtg/lib/rgb.mtg
+
+Go back to the Main Menu and hit Reboot X server.  
+
+After it finishes booting, you can hit control-space to switch back and
+forth between the X screen and the MTG screen.  You can delete the Xadmin
+window whenever you like.
+
+To start up X programs, log on to the host you want to start from a window
+on the MTG side.  Set and export the DISPLAY variable to point to the name
+or IP address assigned to your terminal with a ":0" appended.  Set your X
+resources using "xrdb".  For example, make a file called ".xresources.730"
+and load it with "xrdb .xresources.730".  This is an example file:
+
+	*background:    black
+	*foreground:    white
+
+	*font:                          rom11x16
+	XTerm*cursorShape:              arrow
+	XTerm*curses:                   True
+	XTerm*scrollBar:                True
+	XTerm*scrollInput:              False
+	XTerm*scrollKey:                True
+	XTerm*saveLines:                1000
+	XTerm*termName:                 xterms
+
+NOTE: when you switch between X and MTG screens, processes on the other
+screen are suspended, so you can't execute an X command on the MTG screen
+and expect anything to happen until you switch screens.  This includes xrdb.
+
+You will need a window manager.  Try "twm &".  Also try "xterm &".
+
+- Dave Dykstra
+  1/19/94

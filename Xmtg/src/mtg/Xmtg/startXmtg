@@ -1,0 +1,29 @@
+#
+#   Author:	Karl Larson
+#
+#   Date:	8/4/89
+#
+#   Shell:	startXmtg - Add Xmtg service to the starlan network 
+#			    listener's set of services.  This script
+#			    must be executed if the server is to do
+#			    file I/O over STARLAN.
+
+# Modified by:	Karl Larson
+# Date:		8/29/89
+# Modification:	Changed /usr/X to /usr/Xmtg
+
+# Modified by:	Karl Larson
+# Date:		11/14/89
+# Modification:	The directory where Xmtg is located may not be in
+#		/usr/Xmtg/lib on the merged product or source tape.
+#		It's location is now determined as the same place
+#		that this script (startXmtg) is located.
+
+SVC_CODE=730
+cd `dirname $0`		# Go to directory containing Xmtg
+CMD=`pwd`"/Xmtg"	# Get absolute directory name, prepend to Xmtg
+COMMENT="Xmtg file server"
+NET_SPEC="starlan"
+
+echo "\n\tAdding Xmtg to network listener's set of services ...\n"
+nlsadmin -a ${SVC_CODE} -c "${CMD}" -y "${COMMENT}" ${NET_SPEC}

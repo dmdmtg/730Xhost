@@ -1,0 +1,13 @@
+#
+#   Author:	Karl Larson
+#
+#   Date:	8/4/89
+#
+#   Shell:	stopXmtg - Remove Xmtg service from the starlan network 
+#			   listener's set of services.
+
+SVC_CODE=730
+NET_SPEC="starlan"
+
+echo "\n\tRemoving Xmtg from network listener's set of services ...\n"
+nlsadmin -r ${SVC_CODE} ${NET_SPEC}
